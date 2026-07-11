@@ -102,7 +102,7 @@ var GRADES = [
                         steps: [
                             {
                                 requiredCard: "counting",
-                                explanation: "Using the Counting Card:\n\nCount each " + emoji + " one by one:\n" + Array.from({length: count}, function(_, i) { return (i+1) + ". " + emoji; }).join("\n") + "\n\nTotal: " + count
+                                explanation: "Using the Counting Card:\n\nCount each " + emoji + " one by one.\nPoint at each item and count:\n1, 2, 3, ... until you reach the last one.\n\nWhat number did you reach?"
                             }
                         ]
                     };
@@ -122,7 +122,7 @@ var GRADES = [
                             steps: [
                                 {
                                     requiredCard: "number-recognition",
-                                    explanation: "Using the Number Card:\n\nWe need to add " + a + " and " + b + ".\n\n" + a + " + " + b + " = " + (a + b)
+                                    explanation: "Using the Number Card:\n\nWe need to add " + a + " and " + b + ".\n\nAdd the two numbers together.\nWhat do you get?"
                                 }
                             ]
                         };
@@ -134,7 +134,7 @@ var GRADES = [
                             steps: [
                                 {
                                     requiredCard: "number-recognition",
-                                    explanation: "Using the Number Card:\n\nCompare " + a + " and " + b + ".\n\n" + bigger + " is larger than " + smaller + "."
+                                    explanation: "Using the Number Card:\n\nCompare " + a + " and " + b + ".\n\nWhich number is larger?"
                                 }
                             ]
                         };
@@ -157,7 +157,7 @@ var GRADES = [
                         steps: [
                             {
                                 requiredCard: "comparing",
-                                explanation: "Using the Comparing Card:\n\nLine up the numbers:\n  " + a + "\n  " + b + "\n\n" + big + " is greater than " + small + "."
+                                explanation: "Using the Comparing Card:\n\nLine up the numbers:\n  " + a + "\n  " + b + "\n\nWhich one is greater?"
                             }
                         ]
                     };
@@ -183,11 +183,11 @@ var GRADES = [
                         steps: [
                             {
                                 requiredCard: "counting",
-                                explanation: "Using the Counting Card:\n\nCount " + tens + " (which is " + (tens/10) + " tens)..."
+                                explanation: "Using the Counting Card:\n\n" + tens + " tens = " + tens + " \u00D7 10\n\nWhat is " + tens + " \u00D7 10?"
                             },
                             {
                                 requiredCard: "k-counting-place",
-                                explanation: "Using the Place Value Card:\n\n" + tens + " = " + (tens/10) + " tens\n" + ones + " = " + ones + " ones\n\n" + tens + " + " + ones + " = " + total
+                                explanation: "Using the Place Value Card:\n\nNow add the ones:\n(" + tens + " \u00D7 10) + " + ones + " = ?\n\nWhat is the total?"
                             }
                         ]
                     };
@@ -206,7 +206,7 @@ var GRADES = [
                         steps: [
                             {
                                 requiredCard: "addition",
-                                explanation: "Using the Addition Card:\n\nTo add " + a + " + " + b + ":\n\nStart at " + a + ", count up " + b + " more:\n" + a + " -> " + (a+1) + " -> " + (a+2) + " -> ... -> " + (a+b) + "\n\nAnswer: " + (a+b)
+                                explanation: "Using the Addition Card:\n\nTo add " + a + " + " + b + ":\n\nStart at " + a + ", count up " + b + " more numbers.\n\nWhat number do you land on?"
                             }
                         ]
                     };
@@ -225,7 +225,7 @@ var GRADES = [
                         steps: [
                             {
                                 requiredCard: "subtraction",
-                                explanation: "Using the Subtraction Card:\n\nTo subtract " + a + " - " + b + ":\n\nStart at " + a + ", count back " + b + ":\n" + a + " -> " + (a-1) + " -> " + (a-2) + " -> ... -> " + (a-b) + "\n\nAnswer: " + (a-b)
+                                explanation: "Using the Subtraction Card:\n\nTo subtract " + a + " - " + b + ":\n\nStart at " + a + ", count back " + b + " numbers.\n\nWhat number do you land on?"
                             }
                         ]
                     };
@@ -279,7 +279,7 @@ var GRADES = [
                             },
                             {
                                 requiredCard: "1st-place-value",
-                                explanation: "Using the Tens & Ones Card:\n\n" + (tens*10) + " + " + ones + " = " + total + "\n\nSo " + tens + " tens and " + ones + " ones = " + total
+                                explanation: "Using the Tens & Ones Card:\n\nNow add the ones to the tens value:\n" + (tens*10) + " + " + ones + " = ?\n\nWhat is the total?"
                             }
                         ]
                     };
@@ -299,7 +299,7 @@ var GRADES = [
                             steps: [
                                 {
                                     requiredCard: "addition",
-                                    explanation: "Using the Addition Card:\n\n" + a + " + " + b + ":\nBreak " + b + " into parts to make 10:\n" + a + " + " + (10-a) + " = 10\n10 + " + (b-(10-a)) + " = " + (a+b)
+                                    explanation: "Using the Addition Card:\n\n" + a + " + " + b + ":\nBreak " + b + " into parts to make 10:\n" + a + " + " + (10-a) + " = 10\nThen: 10 + " + (b-(10-a)) + " = ?"
                                 }
                             ]
                         };
@@ -311,7 +311,7 @@ var GRADES = [
                             steps: [
                                 {
                                     requiredCard: "subtraction",
-                                    explanation: "Using the Subtraction Card:\n\n" + a2 + " - " + b2 + ":\nCount back " + b2 + " from " + a2 + ":\n" + a2 + " - " + b2 + " = " + (a2-b2)
+                                    explanation: "Using the Subtraction Card:\n\n" + a2 + " - " + b2 + ":\nCount back " + b2 + " from " + a2 + ".\n\nWhat number do you land on?"
                                 }
                             ]
                         };
@@ -362,7 +362,7 @@ var GRADES = [
                             steps: [
                                 {
                                     requiredCard: "2nd-add-sub-20",
-                                    explanation: "Using the Mental Math Card:\n\n" + a + " + " + b + "\nThink: " + a + " + " + (10-a+10) + " = " + (a+b) + "\n\nAnswer: " + (a+b)
+                                    explanation: "Using the Mental Math Card:\n\n" + a + " + " + b + "\n\nBreak it apart to make 10:\n" + a + " + ? = 10\nThen add the rest.\n\nWhat is the total?"
                                 }
                             ]
                         };
@@ -374,7 +374,7 @@ var GRADES = [
                             steps: [
                                 {
                                     requiredCard: "2nd-add-sub-20",
-                                    explanation: "Using the Mental Math Card:\n\n" + a2 + " - " + b2 + "\nThink: " + a2 + " - " + b2 + " = " + (a2-b2)
+                                    explanation: "Using the Mental Math Card:\n\n" + a2 + " - " + b2 + "\nThink: count back from " + a2 + " by " + b2 + ".\n\nWhat do you get?"
                                 }
                             ]
                         };
@@ -395,7 +395,7 @@ var GRADES = [
                             steps: [
                                 {
                                     requiredCard: "2nd-add-sub-100",
-                                    explanation: "Using the 100 Card:\n\n" + a + " + " + b + "\n\nBreak it down:\n" + a + " + " + (Math.floor(b/10)*10) + " = " + (a + Math.floor(b/10)*10) + "\n" + (a + Math.floor(b/10)*10) + " + " + (b%10) + " = " + (a+b)
+                                    explanation: "Using the 100 Card:\n\n" + a + " + " + b + "\n\nBreak it down:\nFirst add the tens: " + a + " + " + (Math.floor(b/10)*10) + " = ?\nThen add the ones: ? + " + (b%10) + " = ?"
                                 }
                             ]
                         };
@@ -407,7 +407,7 @@ var GRADES = [
                             steps: [
                                 {
                                     requiredCard: "2nd-add-sub-100",
-                                    explanation: "Using the 100 Card:\n\n" + a2 + " - " + b2 + "\n\nBreak it down:\n" + a2 + " - " + (Math.floor(b2/10)*10) + " = " + (a2 - Math.floor(b2/10)*10) + "\n" + (a2 - Math.floor(b2/10)*10) + " - " + (b2%10) + " = " + (a2-b2)
+                                    explanation: "Using the 100 Card:\n\n" + a2 + " - " + b2 + "\n\nBreak it down:\nFirst subtract the tens: " + a2 + " - " + (Math.floor(b2/10)*10) + " = ?\nThen subtract the ones: ? - " + (b2%10) + " = ?"
                                 }
                             ]
                         };
@@ -432,7 +432,7 @@ var GRADES = [
                                 },
                                 {
                                     requiredCard: "2nd-add-sub-1000",
-                                    explanation: "Using the 1000 Card:\n\n" + a + " + " + b + " = " + (a+b)
+                                    explanation: "Using the 1000 Card:\n\n" + a + " + " + b + "\n\nBreak it into place values and add:\nWhat is the total?"
                                 }
                             ]
                         };
@@ -444,7 +444,7 @@ var GRADES = [
                             steps: [
                                 {
                                     requiredCard: "2nd-add-sub-1000",
-                                    explanation: "Using the 1000 Card:\n\n" + a2 + " - " + b2 + "\n\nSubtract hundreds: " + Math.floor(a2/100)*100 + " - " + Math.floor(b2/100)*100 + "\nSubtract tens: " + (a2%100) + " - " + (b2%100) + "\nCombine: " + (a2-b2)
+                                    explanation: "Using the 1000 Card:\n\n" + a2 + " - " + b2 + "\n\nBreak it down by place value:\nSubtract hundreds, tens, and ones separately,\nthen combine. What do you get?"
                                 }
                             ]
                         };
@@ -470,7 +470,7 @@ var GRADES = [
                         steps: [
                             {
                                 requiredCard: "2nd-money",
-                                explanation: "Using the Money Card:\n\nAdd each coin:\n" + picked[0] + "\u00A2 + " + picked[1] + "\u00A2 = " + (picked[0]+picked[1]) + "\u00A2\n" + (picked[0]+picked[1]) + "\u00A2 + " + picked[2] + "\u00A2 = " + total + "\u00A2"
+                                explanation: "Using the Money Card:\n\nAdd each coin together:\n" + picked[0] + "\u00A2 + " + picked[1] + "\u00A2 + " + picked[2] + "\u00A2 = ?\n\nWhat is the total in cents?"
                             }
                         ]
                     };
@@ -498,7 +498,7 @@ var GRADES = [
                             },
                             {
                                 requiredCard: "2nd-geometry",
-                                explanation: "Using the Geometry Card:\n\n" + item.hint + "\n\nAnswer: " + item.a
+                                explanation: "Using the Geometry Card:\n\n" + item.hint + "\n\nHow many does that give you?"
                             }
                         ]
                     };
@@ -525,7 +525,7 @@ var GRADES = [
                         steps: [
                             {
                                 requiredCard: "multiplication",
-                                explanation: "Using the Multiplication Card:\n\n" + a + " \u00D7 " + b + " means adding " + b + " exactly " + a + " times:\n\n" + parts.join(" + ") + " = " + (a*b)
+                                explanation: "Using the Multiplication Card:\n\n" + a + " \u00D7 " + b + " means adding " + b + " exactly " + a + " times:\n\n" + parts.join(" + ") + " = ?\n\nWhat is the total?"
                             }
                         ]
                     };
@@ -548,7 +548,7 @@ var GRADES = [
                             },
                             {
                                 requiredCard: "1digit-mult",
-                                explanation: "Using the Single Digit Card:\n\n" + a + " \u00D7 " + b + " = " + (a*b)
+                                explanation: "Using the Single Digit Card:\n\n" + a + " \u00D7 " + b + ":\nMultiply " + a + " groups of " + b + ".\n\nWhat do you get?"
                             }
                         ]
                     };
@@ -572,7 +572,7 @@ var GRADES = [
                             },
                             {
                                 requiredCard: "multiplication",
-                                explanation: "Using the Multiplication Card:\n\nThink: what \u00D7 " + b + " = " + a + "?\n\n" + result + " \u00D7 " + b + " = " + a + "\n\nSo " + a + " \u00F7 " + b + " = " + result
+                                explanation: "Using the Multiplication Card:\n\nThink: what number \u00D7 " + b + " = " + a + "?\n\nFind the missing factor!"
                             }
                         ]
                     };
@@ -595,7 +595,7 @@ var GRADES = [
                             },
                             {
                                 requiredCard: "fractions",
-                                explanation: "Using the Fractions Card:\n\n" + n + "/" + d + " of " + d + "\n= " + n + " \u00D7 1\n= " + n + "\n\nWhen the denominator matches the whole number,\nthe answer is just the numerator!"
+                                explanation: "Using the Fractions Card:\n\n" + n + "/" + d + " of " + d + "\n= " + n + " \u00D7 1\n= ?\n\nWhen the denominator matches the whole number,\nthe answer is just the numerator!"
                             }
                         ]
                     };
@@ -615,7 +615,7 @@ var GRADES = [
                             steps: [
                                 {
                                     requiredCard: "area-perimeter",
-                                    explanation: "Using the Area Card:\n\nArea = length \u00D7 width\n\n" + l + " \u00D7 " + w + " = " + (l*w)
+                                    explanation: "Using the Area Card:\n\nArea = length \u00D7 width\n\n" + l + " \u00D7 " + w + " = ?\n\nWhat is the area?"
                                 }
                             ]
                         };
@@ -630,7 +630,7 @@ var GRADES = [
                                 },
                                 {
                                     requiredCard: "area-perimeter",
-                                    explanation: "Using the Area Card:\n\nThen: 2 \u00D7 " + (l+w) + " = " + peri + "\n\nPerimeter = " + peri
+                                    explanation: "Using the Area Card:\n\nThen: 2 \u00D7 " + (l+w) + " = ?\n\nWhat is the perimeter?"
                                 }
                             ]
                         };
@@ -687,7 +687,7 @@ var GRADES = [
                             },
                             {
                                 requiredCard: "2digit-mult",
-                                explanation: "Using the Big Multiply Card:\n\n" + tens + " \u00D7 " + b + " = " + (tens*b) + "\n" + ones + " \u00D7 " + b + " = " + (ones*b) + "\n\n" + (tens*b) + " + " + (ones*b) + " = " + (a*b)
+                                explanation: "Using the Big Multiply Card:\n\n" + tens + " \u00D7 " + b + " = ?\n" + ones + " \u00D7 " + b + " = ?\n\nThen add those two products together."
                             }
                         ]
                     };
@@ -711,7 +711,7 @@ var GRADES = [
                             },
                             {
                                 requiredCard: "4th-division",
-                                explanation: "Using the Long Division Card:\n\nThink: ? \u00D7 " + b + " = " + a + "\n\n" + result + " \u00D7 " + b + " = " + a + "\n\nAnswer: " + result
+                                explanation: "Using the Long Division Card:\n\nThink: ? \u00D7 " + b + " = " + a + "\n\nFind the number that, when multiplied by " + b + ", gives " + a + "."
                             }
                         ]
                     };
@@ -735,7 +735,7 @@ var GRADES = [
                             },
                             {
                                 requiredCard: "equiv-fractions",
-                                explanation: "Using the Equiv. Fractions Card:\n\nNumerator: " + n + " \u00D7 " + mult + " = " + (n*mult) + "\n\nSo " + n + "/" + base + " = " + (n*mult) + "/" + (base*mult)
+                                explanation: "Using the Equiv. Fractions Card:\n\nNow multiply the numerator by the same number:\nNumerator: " + n + " \u00D7 " + mult + " = ?\n\nSo " + n + "/" + base + " = ?/" + (base*mult)
                             }
                         ]
                     };
@@ -761,7 +761,7 @@ var GRADES = [
                             },
                             {
                                 requiredCard: "decimals",
-                                explanation: "Using the Decimals Card:\n\n" + whole + " + 0." + tenths + " + 0.0" + hundredths + " = " + result
+                                explanation: "Using the Decimals Card:\n\n" + whole + " + 0." + tenths + " + 0.0" + hundredths + " = ?\n\nAdd them up to get the decimal."
                             }
                         ]
                     };
@@ -815,7 +815,7 @@ var GRADES = [
                             },
                             {
                                 requiredCard: "add-decimals",
-                                explanation: "Using the Add Decimals Card:\n\nAdd each column:\n" + a + " + " + b + " = " + ans
+                                explanation: "Using the Add Decimals Card:\n\nAdd each column carefully:\n" + a + " + " + b + " = ?\n\nRemember to line up the decimal points!"
                             }
                         ]
                     };
@@ -839,7 +839,7 @@ var GRADES = [
                             },
                             {
                                 requiredCard: "sub-decimals",
-                                explanation: "Using the Sub Decimals Card:\n\nSubtract each column:\n" + a + " - " + b + " = " + ans
+                                explanation: "Using the Sub Decimals Card:\n\nSubtract each column carefully:\n" + a + " - " + b + " = ?\n\nLine up the decimal points!"
                             }
                         ]
                     };
@@ -863,7 +863,7 @@ var GRADES = [
                             },
                             {
                                 requiredCard: "powers",
-                                explanation: "Using the Powers Card:\n\n" + base + " \u00D7 " + exp + ":\n" + base + " + " + (exp === 10 ? "0" : "00") + (exp === 1000 ? "0" : "") + " = " + result
+                                explanation: "Using the Powers Card:\n\n" + base + " \u00D7 " + exp + ":\nShift the digits to the left by " + (exp === 10 ? 1 : exp === 100 ? 2 : 3) + " places.\n\nWhat number do you get?"
                             }
                         ]
                     };
@@ -888,7 +888,7 @@ var GRADES = [
                             },
                             {
                                 requiredCard: "volume",
-                                explanation: "Using the Volume Card:\n\nVolume = base area \u00D7 height\n\n" + area + " \u00D7 " + h + " = " + (l*w*h)
+                                explanation: "Using the Volume Card:\n\nVolume = base area \u00D7 height\n\n" + area + " \u00D7 " + h + " = ?\n\nWhat is the volume?"
                             }
                         ]
                     };
@@ -914,7 +914,7 @@ var GRADES = [
                         steps: [
                             {
                                 requiredCard: "ratios",
-                                explanation: "Using the Ratios Card:\n\nThe ratio " + a + ":" + b + "\n\nFind GCD of " + a + " and " + b + ": " + gcd(a, b) + "\n\nSimplify: " + a + "/" + gcd(a, b) + " : " + b + "/" + gcd(a, b) + "\n= " + frac(a, b)
+                                explanation: "Using the Ratios Card:\n\nThe ratio " + a + ":" + b + "\n\nFind the GCD of " + a + " and " + b + ".\nThen divide both by the GCD to simplify."
                             }
                         ]
                     };
@@ -938,7 +938,7 @@ var GRADES = [
                             },
                             {
                                 requiredCard: "percentages",
-                                explanation: "Using the Percentages Card:\n\n" + (pct/100) + " \u00D7 " + base + " = " + ans + "\n\nSo " + pct + "% of " + base + " = " + ans
+                                explanation: "Using the Percentages Card:\n\n" + (pct/100) + " \u00D7 " + base + " = ?\n\nMultiply to find " + pct + "% of " + base + "."
                             }
                         ]
                     };
@@ -958,7 +958,7 @@ var GRADES = [
                         steps: [
                             {
                                 requiredCard: "exponents",
-                                explanation: "Using the Exponents Card:\n\n" + base + "^" + exp + " means multiplying " + base + " by itself " + exp + " times:\n\n" + Array.from({length: exp}, function() { return base; }).join(" \u00D7 ") + " = " + result
+                                explanation: "Using the Exponents Card:\n\n" + base + "^" + exp + " means multiplying " + base + " by itself " + exp + " times:\n\n" + Array.from({length: exp}, function() { return base; }).join(" \u00D7 ") + " = ?\n\nWhat is the result?"
                             }
                         ]
                     };
@@ -977,7 +977,7 @@ var GRADES = [
                         steps: [
                             {
                                 requiredCard: "negatives",
-                                explanation: "Using the Negatives Card:\n\n" + a + " + " + b + "\n\nThink of a number line:\nStart at " + a + ", move " + b + " steps right.\nLand on " + (a+b)
+                                explanation: "Using the Negatives Card:\n\n" + a + " + " + b + "\n\nThink of a number line:\nStart at " + a + ", move " + b + " steps right.\n\nWhat number do you land on?"
                             }
                         ]
                     };
@@ -1002,7 +1002,7 @@ var GRADES = [
                             },
                             {
                                 requiredCard: "addition",
-                                explanation: "Using the Addition Card:\n\n" + (a*x) + " + " + b + " = " + ans + "\n\nSo " + a + "x + " + b + " = " + ans
+                                explanation: "Using the Addition Card:\n\n" + (a*x) + " + " + b + " = ?\n\nAdd to find the value of " + a + "x + " + b + "."
                             }
                         ]
                     };
@@ -1032,7 +1032,7 @@ var GRADES = [
                             },
                             {
                                 requiredCard: "proportions",
-                                explanation: "Using the Proportions Card:\n\nMultiply both parts by " + mult + ":\n" + a + " \u00D7 " + mult + " = " + (a*mult) + "\n" + b + " \u00D7 " + mult + " = " + (b*mult) + "\n\nAnswer: " + (a*mult)
+                                explanation: "Using the Proportions Card:\n\nMultiply both parts by " + mult + ":\n" + a + " \u00D7 " + mult + " = ?\n" + b + " \u00D7 " + mult + " = " + (b*mult) + "\n\nWhat is the missing numerator?"
                             }
                         ]
                     };
@@ -1052,7 +1052,7 @@ var GRADES = [
                         steps: [
                             {
                                 requiredCard: "negatives",
-                                explanation: "Using the Negatives Card:\n\n" + a + " - (" + b + ")\n\nSubtracting a negative = adding a positive:\n" + a + " + " + (-b) + " = " + ans
+                                explanation: "Using the Negatives Card:\n\n" + a + " - (" + b + ")\n\nSubtracting a negative = adding a positive:\n" + a + " + " + (-b) + " = ?\n\nWhat do you get?"
                             }
                         ]
                     };
@@ -1072,7 +1072,7 @@ var GRADES = [
                         steps: [
                             {
                                 requiredCard: "add-decimals",
-                                explanation: "Using the Add Decimals Card:\n\nAlign decimals:\n  " + a + "\n+ " + b + "\n\nAdd: " + a + " + " + b + " = " + ans
+                                explanation: "Using the Add Decimals Card:\n\nAlign decimals:\n  " + a + "\n+ " + b + "\n\nAdd: " + a + " + " + b + " = ?"
                             }
                         ]
                     };
@@ -1092,11 +1092,11 @@ var GRADES = [
                         steps: [
                             {
                                 requiredCard: "negatives",
-                                explanation: "Using the Negatives Card:\n\nRule: negative \u00D7 positive = negative\n\n|" + a + "| \u00D7 " + b + " = " + Math.abs(a) + " \u00D7 " + b + " = " + Math.abs(ans)
+                                explanation: "Using the Negatives Card:\n\nRule: negative \u00D7 positive = negative\n\nFirst multiply the absolute values:\n|" + a + "| \u00D7 " + b + " = " + Math.abs(a) + " \u00D7 " + b + " = ?"
                             },
                             {
                                 requiredCard: "neg-mult-div",
-                                explanation: "Using the Neg Mult/Div Card:\n\nApply the negative sign:\n-(" + Math.abs(ans) + ") = " + ans
+                                explanation: "Using the Neg Mult/Div Card:\n\nNow apply the negative sign.\n\nWhat is the final result?"
                             }
                         ]
                     };
@@ -1125,7 +1125,7 @@ var GRADES = [
                             },
                             {
                                 requiredCard: "division",
-                                explanation: "Using the Division Card:\n\nStep 2: Divide both sides by " + a + ":\n" + a + "x \u00F7 " + a + " = " + (result - b) + " \u00F7 " + a + "\nx = " + x
+                                explanation: "Using the Division Card:\n\nStep 2: Divide both sides by " + a + ":\n" + a + "x \u00F7 " + a + " = " + (result - b) + " \u00F7 " + a + "\n\nx = ?"
                             }
                         ]
                     };
@@ -1161,7 +1161,7 @@ var GRADES = [
                             },
                             {
                                 requiredCard: "solve-unknown",
-                                explanation: "Using the Algebra Card:\n\nDivide by " + a + ":\nx = " + (result - b - c) + " \u00F7 " + a + "\nx = " + x
+                                explanation: "Using the Algebra Card:\n\nDivide by " + a + ":\nx = " + (result - b - c) + " \u00F7 " + a + "\n\nWhat is x?"
                             }
                         ]
                     };
@@ -1186,7 +1186,7 @@ var GRADES = [
                             },
                             {
                                 requiredCard: "multiplication",
-                                explanation: "Using the Multiplication Card:\n\ny = " + m + " \u00D7 " + x + " + " + b + "\ny = " + (m*x) + " + " + b + "\ny = " + y
+                                explanation: "Using the Multiplication Card:\n\ny = " + m + " \u00D7 " + x + " + " + b + "\ny = ? + " + b + "\n\nWhat is y?"
                             }
                         ]
                     };
@@ -1207,11 +1207,11 @@ var GRADES = [
                         steps: [
                             {
                                 requiredCard: "exponents",
-                                explanation: "Using the Exponents Card:\n\nThe " + word + " root is the inverse of " + word + ".\n\n" + base + "^" + exp + " = " + result
+                                explanation: "Using the Exponents Card:\n\nThe " + word + " root is the inverse of " + word + ".\n\nThink: what number " + (exp === 2 ? "squared" : "cubed") + " gives " + result + "?"
                             },
                             {
                                 requiredCard: "exponents-ops",
-                                explanation: "Using the Exponents Ops Card:\n\n" + word.charAt(0).toUpperCase() + word.slice(1) + " root of " + result + " = ?\n\nWhat number " + (exp === 2 ? "squared" : "cubed") + " = " + result + "?\n\n" + base + (exp === 2 ? "\u00B2" : "\u00B3") + " = " + result + "\n\nAnswer: " + base
+                                explanation: "Using the Exponents Ops Card:\n\n" + word.charAt(0).toUpperCase() + word.slice(1) + " root of " + result + " = ?\n\nWhat number " + (exp === 2 ? "squared" : "cubed") + " = " + result + "?\n\nFind the missing base!"
                             }
                         ]
                     };
@@ -1414,7 +1414,38 @@ function openCardPicker() {
         var feedback = document.getElementById("feedback");
         feedback.textContent = "\u{1F4A1} You don't have the " + cardInfo.name + " yet. Here's how it works:";
         feedback.className = "feedback correct";
-        setTimeout(function() { showExplanation(step); }, 100);
+
+        // Show explanation but require manual "Next Step" click
+        var box = document.getElementById("explanation-box");
+        document.getElementById("explanation-card-icon").textContent = cardInfo.icon;
+        document.getElementById("explanation-card-name").textContent = cardInfo.name;
+        document.getElementById("explanation-body").textContent = step.explanation;
+        box.style.display = "block";
+
+        // Hide pick prompt
+        document.getElementById("pick-prompt").style.display = "none";
+
+        // Show step indicator for multi-step
+        if (currentProblem.steps.length > 1) {
+            document.getElementById("step-indicator").style.display = "block";
+            document.getElementById("step-text").textContent = "Step " + (currentStepIndex + 1) + " of " + currentProblem.steps.length;
+        }
+
+        // Show "Next Step" or answer input
+        if (currentStepIndex < currentProblem.steps.length - 1) {
+            document.getElementById("next-step-section").style.display = "block";
+        } else {
+            // Last step - show answer input
+            document.getElementById("answer-section").style.display = "flex";
+            if (currentProblem.type === "fraction") {
+                document.getElementById("answer-input").placeholder = "a/b";
+                document.getElementById("answer-input").inputMode = "text";
+            } else {
+                document.getElementById("answer-input").placeholder = "Type your final answer...";
+                document.getElementById("answer-input").inputMode = "decimal";
+            }
+            setTimeout(function() { document.getElementById("answer-input").focus(); }, 300);
+        }
         return;
     }
 
@@ -1603,8 +1634,10 @@ function completeTopic() {
     document.getElementById("complete-stars-earned").textContent = topicStarsEarned;
     var acc = problemsAttempted > 0 ? Math.round((problemsCorrect / problemsAttempted) * 100) : 0;
     document.getElementById("complete-accuracy").textContent = acc + "%";
-    document.getElementById("reward-card-icon").textContent = currentTopic.cardIcon || "\u{1F3C6}";
-    document.getElementById("reward-card-name").textContent = currentTopic.cardName;
+    var rewardCardInfo = getCardInfo(currentTopic.cardId);
+    document.getElementById("reward-card-icon").textContent = rewardCardInfo.icon;
+    document.getElementById("reward-card-name").textContent = rewardCardInfo.name;
+    document.getElementById("card-reward").style.display = isNew ? "block" : "none";
 
     var stars = [document.getElementById("complete-star1"), document.getElementById("complete-star2"), document.getElementById("complete-star3")];
     stars.forEach(function(s) { s.className = "big-star"; });
@@ -1626,11 +1659,12 @@ function renderCards() {
     GRADES.forEach(function(grade) {
         grade.topics.forEach(function(topic) {
             var owned = hasCard(topic.cardId);
+            var cardInfo = getCardInfo(topic.cardId);
             var item = document.createElement("div");
             item.className = "card-item" + (owned ? " owned" : " locked-card");
             item.innerHTML =
-                '<div class="card-item-icon">' + topic.cardIcon + '</div>' +
-                '<div class="card-item-name">' + topic.cardName + '</div>' +
+                '<div class="card-item-icon">' + cardInfo.icon + '</div>' +
+                '<div class="card-item-name">' + cardInfo.name + '</div>' +
                 '<div class="card-item-topic">' + (owned ? grade.name : "\u{1F512} Locked") + '</div>';
             c.appendChild(item);
         });
