@@ -1293,7 +1293,7 @@ function showScreen(id) {
     document.getElementById(id).classList.add("active");
     if (id === "screen-home") refreshHome();
     if (id === "screen-play") renderGrades();
-    if (id === "screen-topics" && currentGrade) openGrade(currentGrade);
+    if (id === "screen-topics") renderTopics();
     if (id === "screen-cards") renderCards();
     if (id === "screen-progress") renderProgress();
 }
@@ -1326,12 +1326,12 @@ function renderGrades() {
     });
 }
 
-function openGrade(grade) {
-    currentGrade = grade;
-    document.getElementById("topics-grade-title").textContent = grade.name;
+function renderTopics() {
+    if (!currentGrade) return;
+    document.getElementById("topics-grade-title").textContent = currentGrade.name;
     var c = document.getElementById("topic-list");
     c.innerHTML = "";
-    grade.topics.forEach(function(topic) {
+    currentGrade.topics.forEach(function(topic) {
         var done = gameState.completedTopics.indexOf(topic.id) !== -1;
         var cardsOk = ownsAllCards(topic.requiredCards);
         var locked = !cardsOk && !done;
@@ -1347,6 +1347,11 @@ function openGrade(grade) {
         if (!locked) item.onclick = function() { startTopic(topic); };
         c.appendChild(item);
     });
+}
+
+function openGrade(grade) {
+    currentGrade = grade;
+    renderTopics();
     showScreen("screen-topics");
 }
 
