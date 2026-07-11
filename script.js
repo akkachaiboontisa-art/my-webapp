@@ -183,7 +183,7 @@ var GRADES = [
                         steps: [
                             {
                                 requiredCard: "counting",
-                                explanation: "Using the Counting Card:\n\n" + tens + " tens = " + tens + " \u00D7 10\n\nWhat is " + tens + " \u00D7 10?"
+                                explanation: "Using the Counting Card:\n\n" + tens + " = " + (tens/10) + " groups of 10\n\n(" + (tens/10) + " \u00D7 10 = " + tens + ")\n\nNow, what is " + tens + " + " + ones + "?"
                             },
                             {
                                 requiredCard: "k-counting-place",
@@ -299,7 +299,7 @@ var GRADES = [
                             steps: [
                                 {
                                     requiredCard: "addition",
-                                    explanation: "Using the Addition Card:\n\n" + a + " + " + b + ":\nBreak " + b + " into parts to make 10:\n" + a + " + " + (10-a) + " = 10\nThen: 10 + " + (b-(10-a)) + " = ?"
+                                    explanation: "Using the Addition Card:\n\n" + a + " + " + b + ":\nCount up " + b + " from " + a + ".\n\nStart at " + a + ", then count " + b + " more.\nWhat number do you reach?"
                                 }
                             ]
                         };
@@ -1293,6 +1293,7 @@ function showScreen(id) {
     document.getElementById(id).classList.add("active");
     if (id === "screen-home") refreshHome();
     if (id === "screen-play") renderGrades();
+    if (id === "screen-topics" && currentGrade) openGrade(currentGrade);
     if (id === "screen-cards") renderCards();
     if (id === "screen-progress") renderProgress();
 }
@@ -1326,6 +1327,7 @@ function renderGrades() {
 }
 
 function openGrade(grade) {
+    currentGrade = grade;
     document.getElementById("topics-grade-title").textContent = grade.name;
     var c = document.getElementById("topic-list");
     c.innerHTML = "";
@@ -1350,6 +1352,7 @@ function openGrade(grade) {
 
 // ---------- GAME ----------
 
+var currentGrade = null;
 var currentTopic = null;
 var currentProblem = null;
 var currentStepIndex = 0;
@@ -1372,7 +1375,7 @@ function startTopic(topic) {
 }
 
 function nextProblem() {
-    if (problemsCorrect >= problemsNeeded) {
+    if (problemsCorrect >= problemsNeeded || problemsAttempted >= 10) {
         completeTopic();
         return;
     }
@@ -1626,7 +1629,8 @@ function completeTopic() {
     var isNew = gameState.completedTopics.indexOf(currentTopic.id) === -1;
     if (isNew) gameState.completedTopics.push(currentTopic.id);
     gameState.topicStars[currentTopic.id] = Math.max(gameState.topicStars[currentTopic.id] || 0, topicStarsEarned);
-    if (isNew && !hasCard(currentTopic.cardId)) gameState.cards.push(currentTopic.cardId);
+    var gotNewCard = isNew && !hasCard(currentTopic.cardId);
+    if (gotNewCard) gameState.cards.push(currentTopic.cardId);
     saveState();
 
     document.getElementById("complete-topic-name").textContent = currentTopic.name;
@@ -1637,7 +1641,7 @@ function completeTopic() {
     var rewardCardInfo = getCardInfo(currentTopic.cardId);
     document.getElementById("reward-card-icon").textContent = rewardCardInfo.icon;
     document.getElementById("reward-card-name").textContent = rewardCardInfo.name;
-    document.getElementById("card-reward").style.display = isNew ? "block" : "none";
+    document.getElementById("card-reward").style.display = gotNewCard ? "block" : "none";
 
     var stars = [document.getElementById("complete-star1"), document.getElementById("complete-star2"), document.getElementById("complete-star3")];
     stars.forEach(function(s) { s.className = "big-star"; });
