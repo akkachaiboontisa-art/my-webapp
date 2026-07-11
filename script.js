@@ -1230,10 +1230,19 @@ function defaultState() {
         stars: 0,
         totalCorrect: 0,
         totalAttempts: 0,
-        cards: [],
+        cards: ["counting", "number-recognition", "comparing"],
         completedTopics: [],
         topicStars: {}
     };
+}
+
+function resetGame() {
+    if (confirm("Are you sure you want to reset ALL progress?\n\nThis will delete all your cards, stars, and completed topics!")) {
+        localStorage.removeItem("mathquest-state");
+        gameState = defaultState();
+        saveState();
+        showScreen("screen-home");
+    }
 }
 
 function loadState() {
@@ -1397,14 +1406,25 @@ function updateGameProgress() {
 function openCardPicker() {
     if (!currentProblem || !currentProblem.steps[currentStepIndex]) return;
 
+    var step = currentProblem.steps[currentStepIndex];
+
+    // If user doesn't have the required card, auto-show explanation
+    if (!hasCard(step.requiredCard)) {
+        var cardInfo = getCardInfo(step.requiredCard);
+        var feedback = document.getElementById("feedback");
+        feedback.textContent = "\u{1F4A1} You don't have the " + cardInfo.name + " yet. Here's how it works:";
+        feedback.className = "feedback correct";
+        setTimeout(function() { showExplanation(step); }, 100);
+        return;
+    }
+
     var overlay = document.getElementById("card-picker-overlay");
     var grid = document.getElementById("picker-cards-grid");
-    var feedback = document.getElementById("picker-feedback");
-    feedback.textContent = "";
-    feedback.className = "picker-feedback";
+    var pickerFeedback = document.getElementById("picker-feedback");
+    pickerFeedback.textContent = "";
+    pickerFeedback.className = "picker-feedback";
     grid.innerHTML = "";
 
-    var step = currentProblem.steps[currentStepIndex];
     var hint = document.getElementById("picker-hint");
     hint.textContent = "Step " + (currentStepIndex + 1) + " of " + currentProblem.steps.length + " \u2014 Pick the right card!";
 
