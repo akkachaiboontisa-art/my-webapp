@@ -1439,21 +1439,11 @@ function openCardPicker() {
             document.getElementById("step-text").textContent = "Step " + (currentStepIndex + 1) + " of " + currentProblem.steps.length;
         }
 
-        // Show "Next Step" or answer input
-        if (currentStepIndex < currentProblem.steps.length - 1) {
-            document.getElementById("next-step-section").style.display = "block";
-        } else {
-            // Last step - show answer input
-            document.getElementById("answer-section").style.display = "flex";
-            if (currentProblem.type === "fraction") {
-                document.getElementById("answer-input").placeholder = "a/b";
-                document.getElementById("answer-input").inputMode = "text";
-            } else {
-                document.getElementById("answer-input").placeholder = "Type your final answer...";
-                document.getElementById("answer-input").inputMode = "decimal";
-            }
-            setTimeout(function() { document.getElementById("answer-input").focus(); }, 300);
-        }
+        // Do NOT show answer input or "Next Step" — user needs this card first
+        document.getElementById("answer-section").style.display = "none";
+        document.getElementById("next-step-section").style.display = "none";
+
+        feedback.textContent += " Earn this card first, then come back!";
         return;
     }
 
@@ -1557,6 +1547,7 @@ function nextStep() {
     document.getElementById("explanation-box").style.display = "none";
     document.getElementById("next-step-section").style.display = "none";
     document.getElementById("step-indicator").style.display = "none";
+    document.getElementById("answer-section").style.display = "none";
 
     if (currentStepIndex >= currentProblem.steps.length) {
         // All steps done, show answer
