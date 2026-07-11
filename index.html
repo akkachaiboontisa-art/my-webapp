@@ -3,44 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Web App</title>
+    <title>MathQuest - Learn Math the Fun Way!</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Welcome to My Web App</h1>
-            <p class="subtitle">Built with HTML, CSS, and JavaScript</p>
-        </header>
-        
-        <main>
-            <div class="card">
-                <h2>Interactive Counter</h2>
-                <p>Click the button to increment the counter</p>
-                <div class="counter">
-                    <span id="count">0</span>
+
+    <!-- ===== HOME SCREEN ===== -->
+    <div id="screen-home" class="screen active">
+        <div class="home-container">
+            <div class="logo">
+                <div class="logo-icon">M</div>
+                <h1>MathQuest</h1>
+                <p class="tagline">Collect Cards. Level Up. Master Math!</p>
+            </div>
+            <div class="home-buttons">
+                <button class="btn-primary btn-large" onclick="showScreen('screen-play')">
+                    <span class="btn-icon">&#9654;</span> Play
+                </button>
+                <button class="btn-secondary btn-large" onclick="showScreen('screen-cards')">
+                    <span class="btn-icon">&#9830;</span> My Cards
+                </button>
+                <button class="btn-secondary btn-large" onclick="showScreen('screen-progress')">
+                    <span class="btn-icon">&#9733;</span> Progress
+                </button>
+            </div>
+            <div class="stats-bar">
+                <div class="stat">
+                    <span class="stat-value" id="home-stars">0</span>
+                    <span class="stat-label">Stars</span>
                 </div>
-                <button id="incrementBtn">Increment</button>
-                <button id="resetBtn">Reset</button>
+                <div class="stat">
+                    <span class="stat-value" id="home-cards">0</span>
+                    <span class="stat-label">Cards</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value" id="home-level">1</span>
+                    <span class="stat-label">Level</span>
+                </div>
             </div>
-            
-            <div class="card">
-                <h2>Current Time</h2>
-                <p id="time"></p>
-            </div>
-            
-            <div class="card">
-                <h2>Color Changer</h2>
-                <p>Click the button to change the background color</p>
-                <button id="colorBtn">Change Color</button>
-            </div>
-        </main>
-        
-        <footer>
-            <p>Made with ❤ by OpenCode</p>
-        </footer>
+        </div>
     </div>
-    
+
+    <!-- ===== GRADE SELECT SCREEN ===== -->
+    <div id="screen-play" class="screen">
+        <div class="screen-header">
+            <button class="btn-back" onclick="showScreen('screen-home')">&#8592;</button>
+            <h2>Select Grade</h2>
+            <div class="header-spacer"></div>
+        </div>
+        <div class="scroll-content">
+            <div id="grade-list" class="grade-grid"></div>
+        </div>
+    </div>
+
+    <!-- ===== TOPIC SELECT SCREEN ===== -->
+    <div id="screen-topics" class="screen">
+        <div class="screen-header">
+            <button class="btn-back" onclick="showScreen('screen-play')">&#8592;</button>
+            <h2 id="topics-grade-title">Topics</h2>
+            <div class="header-spacer"></div>
+        </div>
+        <div class="scroll-content">
+            <div id="topic-list" class="topic-list"></div>
+        </div>
+    </div>
+
+    <!-- ===== GAME SCREEN ===== -->
+    <div id="screen-game" class="screen">
+        <div class="game-hud">
+            <button class="btn-back" onclick="exitGame()">&#8592;</button>
+            <div class="hud-center">
+                <div class="hud-topic" id="game-topic-name">Topic</div>
+                <div class="hud-progress">
+                    <div class="hud-progress-bar">
+                        <div class="hud-progress-fill" id="game-progress-fill"></div>
+                    </div>
+                    <span id="game-progress-text">0/5</span>
+                </div>
+            </div>
+            <div class="hud-stars">
+                <span class="star-icon">&#9733;</span>
+                <span id="game-stars">0</span>
+            </div>
+        </div>
+
+        <div class="game-area">
+            <div class="problem-card" id="problem-card">
+                <div class="problem-label" id="problem-label">Solve this:</div>
+                <div class="problem-text" id="problem-text">3 + 5 = ?</div>
+            </div>
+
+            <div class="answer-section">
+                <input type="text" id="answer-input" class="answer-input" placeholder="Your answer..."
+                    inputmode="decimal" autocomplete="off">
+                <button class="btn-submit" id="btn-submit" onclick="submitAnswer()">Check</button>
+            </div>
+
+            <div class="feedback" id="feedback"></div>
+
+            <div class="required-cards" id="required-cards"></div>
+        </div>
+    </div>
+
+    <!-- ===== TOPIC COMPLETE SCREEN ===== -->
+    <div id="screen-complete" class="screen">
+        <div class="complete-container">
+            <div class="complete-stars">
+                <span class="big-star" id="complete-star1">&#9733;</span>
+                <span class="big-star" id="complete-star2">&#9733;</span>
+                <span class="big-star" id="complete-star3">&#9733;</span>
+            </div>
+            <h2>Topic Complete!</h2>
+            <p class="complete-topic" id="complete-topic-name">Addition Basics</p>
+
+            <div class="card-reward" id="card-reward">
+                <p>You earned a new card!</p>
+                <div class="reward-card" id="reward-card">
+                    <div class="reward-card-icon" id="reward-card-icon">+</div>
+                    <div class="reward-card-name" id="reward-card-name">Addition Card</div>
+                </div>
+            </div>
+
+            <div class="complete-stats">
+                <div class="cstat">
+                    <span class="cstat-value" id="complete-correct">5</span>
+                    <span class="cstat-label">Correct</span>
+                </div>
+                <div class="cstat">
+                    <span class="cstat-value" id="complete-stars-earned">3</span>
+                    <span class="cstat-label">Stars</span>
+                </div>
+                <div class="cstat">
+                    <span class="cstat-value" id="complete-accuracy">100%</span>
+                    <span class="cstat-label">Accuracy</span>
+                </div>
+            </div>
+
+            <div class="complete-buttons">
+                <button class="btn-primary" onclick="showScreen('screen-topics')">Back to Topics</button>
+                <button class="btn-secondary" onclick="showScreen('screen-home')">Home</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MY CARDS SCREEN ===== -->
+    <div id="screen-cards" class="screen">
+        <div class="screen-header">
+            <button class="btn-back" onclick="showScreen('screen-home')">&#8592;</button>
+            <h2>My Cards</h2>
+            <div class="header-spacer"></div>
+        </div>
+        <div class="scroll-content">
+            <p class="cards-intro">Cards are earned by completing topics. Each card represents a math skill you've mastered!</p>
+            <div id="cards-grid" class="cards-grid"></div>
+        </div>
+    </div>
+
+    <!-- ===== PROGRESS SCREEN ===== -->
+    <div id="screen-progress" class="screen">
+        <div class="screen-header">
+            <button class="btn-back" onclick="showScreen('screen-home')">&#8592;</button>
+            <h2>Progress</h2>
+            <div class="header-spacer"></div>
+        </div>
+        <div class="scroll-content">
+            <div class="progress-overview">
+                <div class="progress-stat">
+                    <div class="progress-ring" id="ring-topics">
+                        <span class="ring-value">0%</span>
+                    </div>
+                    <span class="progress-stat-label">Topics Done</span>
+                </div>
+                <div class="progress-stat">
+                    <div class="progress-ring" id="ring-problems">
+                        <span class="ring-value">0</span>
+                    </div>
+                    <span class="progress-stat-label">Problems Solved</span>
+                </div>
+                <div class="progress-stat">
+                    <div class="progress-ring" id="ring-accuracy">
+                        <span class="ring-value">0%</span>
+                    </div>
+                    <span class="progress-stat-label">Accuracy</span>
+                </div>
+            </div>
+            <div id="progress-grades" class="progress-grades"></div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
