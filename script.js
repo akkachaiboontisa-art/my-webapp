@@ -1387,13 +1387,17 @@ function nextProblem() {
     currentProblem = currentTopic.generate();
     currentStepIndex = 0;
 
-    document.getElementById("problem-text").textContent = currentProblem.text;
+    document.getElementById("problem-text").innerHTML = currentProblem.text;
+    if (window.MathJax && MathJax.typesetPromise) {
+        MathJax.typesetPromise([document.getElementById("problem-text")]);
+    }
     document.getElementById("problem-label").textContent = "Solve this:";
     document.getElementById("feedback").textContent = "";
     document.getElementById("feedback").className = "feedback";
 
     // Reset UI
     document.getElementById("explanation-box").style.display = "none";
+    document.getElementById("explanation-steps").innerHTML = "";
     document.getElementById("answer-section").style.display = "none";
     document.getElementById("next-step-section").style.display = "none";
     document.getElementById("step-indicator").style.display = "none";
@@ -1420,31 +1424,21 @@ function openCardPicker() {
     if (!hasCard(step.requiredCard)) {
         var cardInfo = getCardInfo(step.requiredCard);
         var feedback = document.getElementById("feedback");
-        var box = document.getElementById("explanation-box");
-        document.getElementById("explanation-card-icon").textContent = cardInfo.icon;
-        document.getElementById("explanation-card-name").textContent = cardInfo.name;
-        document.getElementById("explanation-body").textContent = step.explanation;
-        box.style.display = "block";
 
         // Hide pick prompt
         document.getElementById("pick-prompt").style.display = "none";
 
-        // Show step indicator for multi-step
-        if (currentProblem.steps.length > 1) {
-            document.getElementById("step-indicator").style.display = "block";
-            document.getElementById("step-text").textContent = "Step " + (currentStepIndex + 1) + " of " + currentProblem.steps.length;
-        }
-
         var isOwnCard = (step.requiredCard === currentTopic.cardId);
 
         if (isOwnCard) {
-            // This step needs the card THIS topic awards — user must complete the topic to earn it.
-            // Show explanation as a hint and let them answer.
+            // This step needs the card THIS topic awards — show explanation as a hint.
+            appendExplanation(currentStepIndex, step);
+
             feedback.textContent = "\u{1F4A1} Complete this topic to earn the " + cardInfo.name + "!";
             feedback.className = "feedback correct";
 
             if (currentStepIndex < currentProblem.steps.length - 1) {
-                // More steps — show Next Step
+                // More steps — show "Next Step" button
                 document.getElementById("next-step-section").style.display = "block";
             } else {
                 // Last step — show answer input
@@ -1459,7 +1453,9 @@ function openCardPicker() {
                 setTimeout(function() { document.getElementById("answer-input").focus(); }, 300);
             }
         } else {
-            // Different card needed — block user, they must earn it elsewhere first
+            // Different card needed — show explanation but block answering
+            appendExplanation(currentStepIndex, step);
+
             feedback.textContent = "\u{1F512} You need the " + cardInfo.name + " first. Earn it by completing other topics!";
             feedback.className = "feedback wrong";
 
@@ -1524,21 +1520,36 @@ function pickCard(cardId, el) {
     }
 }
 
-function showExplanation(step) {
+function appendExplanation(stepIndex, step) {
     var box = document.getElementById("explanation-box");
+    var container = document.getElementById("explanation-steps");
     var cardInfo = getCardInfo(step.requiredCard);
 
-    document.getElementById("explanation-card-icon").textContent = cardInfo.icon;
-    document.getElementById("explanation-card-name").textContent = cardInfo.name;
-    document.getElementById("explanation-body").textContent = step.explanation;
+    var stepEl = document.createElement("div");
+    stepEl.className = "explanation-step";
+    stepEl.innerHTML =
+        '<div class="explanation-step-header">' +
+            '<span class="explanation-step-label">Step ' + (stepIndex + 1) + '</span>' +
+            '<span class="explanation-card-icon">' + cardInfo.icon + '</span>' +
+            '<span class="explanation-card-name">' + cardInfo.name + '</span>' +
+        '</div>' +
+        '<div class="explanation-body">' + step.explanation + '</div>';
+    container.appendChild(stepEl);
 
     box.style.display = "block";
+
+    // Auto-scroll to bottom
+    box.scrollTop = box.scrollHeight;
 
     // Step indicator
     if (currentProblem.steps.length > 1) {
         document.getElementById("step-indicator").style.display = "block";
-        document.getElementById("step-text").textContent = "Step " + (currentStepIndex + 1) + " of " + currentProblem.steps.length;
+        document.getElementById("step-text").textContent = "Step " + (stepIndex + 1) + " of " + currentProblem.steps.length;
     }
+}
+
+function showExplanation(step) {
+    appendExplanation(currentStepIndex, step);
 
     // Check if more steps or show answer
     if (currentStepIndex < currentProblem.steps.length - 1) {
@@ -1566,7 +1577,6 @@ function showExplanation(step) {
 
 function nextStep() {
     currentStepIndex++;
-    document.getElementById("explanation-box").style.display = "none";
     document.getElementById("next-step-section").style.display = "none";
     document.getElementById("step-indicator").style.display = "none";
     document.getElementById("answer-section").style.display = "none";
@@ -1577,7 +1587,7 @@ function nextStep() {
         document.getElementById("answer-section").style.display = "flex";
         setTimeout(function() { document.getElementById("answer-input").focus(); }, 300);
     } else {
-        // More steps - show card picker
+        // More steps - show card picker (explanation stays visible)
         document.getElementById("pick-prompt").style.display = "block";
     }
 }

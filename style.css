@@ -912,37 +912,61 @@ button:active {
     width: 100%;
     max-width: 400px;
     animation: popIn 0.4s ease;
+    max-height: 400px;
+    overflow-y: auto;
 }
 
-.explanation-header {
+.explanation-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.explanation-step {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 12px;
+}
+
+.explanation-step:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.explanation-step-header {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 14px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--border);
+    margin-bottom: 10px;
+}
+
+.explanation-step-label {
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .explanation-card-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
+    font-size: 1rem;
     background: linear-gradient(135deg, var(--primary), var(--accent));
     flex-shrink: 0;
 }
 
 .explanation-card-name {
     font-weight: 700;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--green);
 }
 
 .explanation-body {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     line-height: 1.7;
     color: var(--text);
     white-space: pre-line;

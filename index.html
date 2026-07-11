@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MathQuest - Learn Math the Fun Way!</title>
     <link rel="stylesheet" href="style.css">
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            svg: { fontCache: 'global' },
+            startup: { pageReady: function() { return MathJax.startup.defaultPageReady(); } }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body>
 
@@ -102,11 +110,7 @@
 
             <!-- Explanation Display -->
             <div class="explanation-box" id="explanation-box" style="display:none;">
-                <div class="explanation-header">
-                    <span class="explanation-card-icon" id="explanation-card-icon"></span>
-                    <span class="explanation-card-name" id="explanation-card-name"></span>
-                </div>
-                <div class="explanation-body" id="explanation-body"></div>
+                <div class="explanation-steps" id="explanation-steps"></div>
             </div>
 
             <!-- Pick Card Prompt -->
@@ -234,6 +238,6 @@
         </div>
     </div>
 
-    <script src="script.js?v=6"></script>
+    <script src="script.js?v=7"></script>
 </body>
 </html>
