@@ -873,6 +873,230 @@ button:active {
     transition: width 0.5s ease;
 }
 
+/* ===== STEP INDICATOR ===== */
+.step-indicator {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 8px 20px;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    font-weight: 600;
+}
+
+/* ===== EXPLANATION BOX ===== */
+.explanation-box {
+    background: var(--bg-card);
+    border: 2px solid var(--green);
+    border-radius: 16px;
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+    animation: popIn 0.4s ease;
+}
+
+.explanation-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+.explanation-card-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    flex-shrink: 0;
+}
+
+.explanation-card-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--green);
+}
+
+.explanation-body {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text);
+    white-space: pre-line;
+}
+
+/* ===== PICK CARD PROMPT ===== */
+.pick-prompt {
+    text-align: center;
+}
+
+.pick-prompt-text {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    margin-bottom: 14px;
+}
+
+.btn-pick-card {
+    background: linear-gradient(135deg, var(--gold), #e6a817);
+    color: #1a1a2e;
+    padding: 14px 32px;
+    border-radius: 14px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    animation: pulse 2s ease-in-out infinite;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-pick-card:hover {
+    box-shadow: 0 4px 20px rgba(253, 203, 110, 0.5);
+    transform: translateY(-2px);
+}
+
+/* ===== NEXT STEP BUTTON ===== */
+.next-step-section {
+    text-align: center;
+    animation: popIn 0.3s ease;
+}
+
+/* ===== CARD PICKER OVERLAY ===== */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 100;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    animation: fadeIn 0.2s ease;
+}
+
+.overlay-content {
+    background: var(--bg-card);
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    width: 100%;
+    max-width: 500px;
+    max-height: 80vh;
+    padding: 24px;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+.overlay-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.overlay-header h3 {
+    font-size: 1.2rem;
+    color: var(--gold);
+}
+
+.overlay-hint {
+    width: 100%;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+}
+
+.btn-close {
+    background: var(--bg-card-light);
+    color: var(--text);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.btn-close:hover {
+    background: var(--border);
+}
+
+.picker-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 10px;
+    max-height: 50vh;
+    overflow-y: auto;
+    padding: 4px;
+}
+
+.picker-card {
+    background: var(--bg-card-light);
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.picker-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(253, 203, 110, 0.3);
+}
+
+.picker-card.correct {
+    border-color: var(--green);
+    background: rgba(0, 184, 148, 0.2);
+    animation: popIn 0.3s ease;
+}
+
+.picker-card.wrong {
+    border-color: var(--red);
+    animation: shake 0.4s ease;
+}
+
+.picker-card-icon {
+    font-size: 1.8rem;
+    margin-bottom: 6px;
+}
+
+.picker-card-name {
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.picker-feedback {
+    text-align: center;
+    margin-top: 12px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    min-height: 24px;
+}
+
+.picker-feedback.wrong {
+    color: var(--red);
+    animation: shake 0.4s ease;
+}
+
+.picker-feedback.hint {
+    color: var(--gold);
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 480px) {
     .logo h1 {
@@ -895,6 +1119,10 @@ button:active {
 
     .cards-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .picker-cards-grid {
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .stats-bar {

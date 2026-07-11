@@ -88,20 +88,62 @@
         </div>
 
         <div class="game-area">
+            <!-- Problem Display -->
             <div class="problem-card" id="problem-card">
                 <div class="problem-label" id="problem-label">Solve this:</div>
                 <div class="problem-text" id="problem-text">3 + 5 = ?</div>
             </div>
 
-            <div class="answer-section">
-                <input type="text" id="answer-input" class="answer-input" placeholder="Your answer..."
+            <!-- Step Indicator -->
+            <div class="step-indicator" id="step-indicator" style="display:none;">
+                <span id="step-text">Step 1 of 2</span>
+            </div>
+
+            <!-- Explanation Display -->
+            <div class="explanation-box" id="explanation-box" style="display:none;">
+                <div class="explanation-header">
+                    <span class="explanation-card-icon" id="explanation-card-icon"></span>
+                    <span class="explanation-card-name" id="explanation-card-name"></span>
+                </div>
+                <div class="explanation-body" id="explanation-body"></div>
+            </div>
+
+            <!-- Pick Card Prompt -->
+            <div class="pick-prompt" id="pick-prompt">
+                <p class="pick-prompt-text">Pick a card to solve this problem:</p>
+                <button class="btn-pick-card" id="btn-pick-card" onclick="openCardPicker()">
+                    <span>&#9830;</span> Pick a Card
+                </button>
+            </div>
+
+            <!-- Next Step Button -->
+            <div class="next-step-section" id="next-step-section" style="display:none;">
+                <button class="btn-primary" id="btn-next-step" onclick="nextStep()">
+                    Next Step &#8594;
+                </button>
+            </div>
+
+            <!-- Answer Input -->
+            <div class="answer-section" id="answer-section" style="display:none;">
+                <input type="text" id="answer-input" class="answer-input" placeholder="Type your final answer..."
                     inputmode="decimal" autocomplete="off">
                 <button class="btn-submit" id="btn-submit" onclick="submitAnswer()">Check</button>
             </div>
 
             <div class="feedback" id="feedback"></div>
+        </div>
+    </div>
 
-            <div class="required-cards" id="required-cards"></div>
+    <!-- ===== CARD PICKER OVERLAY ===== -->
+    <div id="card-picker-overlay" class="overlay" style="display:none;">
+        <div class="overlay-content">
+            <div class="overlay-header">
+                <h3>&#9830; Pick a Card</h3>
+                <p class="overlay-hint" id="picker-hint">Choose the card that helps solve this step</p>
+                <button class="btn-close" onclick="closeCardPicker()">&#10005;</button>
+            </div>
+            <div class="picker-cards-grid" id="picker-cards-grid"></div>
+            <div class="picker-feedback" id="picker-feedback"></div>
         </div>
     </div>
 
