@@ -23,6 +23,7 @@ All game logic is in `script.js`. HTML defines screen shells; JS renders content
 - **Starter cards**: `counting`, `number-recognition`, `comparing` — all users have these. Do not show "You earned a new card!" when completing a starter topic.
 - **`gotNewCard` flag**: Use this in `completeTopic()` to avoid showing card-reward for starter topics. Only show when `isNew && !hasCard(currentTopic.cardId)`.
 - **Missing card gate**: When user doesn't have the required card for a step, `openCardPicker()` must NEVER show the answer input or "Next Step" button. Only show the explanation + "Earn this card first!" message. Otherwise user can answer without having the card.
+- **Own-reward exception**: Almost every topic's steps require the topic's own reward card (e.g. `k-addition` awards "addition" but step requires "addition"). When `step.requiredCard === currentTopic.cardId`, the user must still be able to answer — show the explanation as a hint + answer input, NOT the "Earn this card first!" block.
 
 ## Deploy
 

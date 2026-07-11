@@ -238,10 +238,10 @@ var GRADES = [
                 requiredCards: ["counting"],
                 generate: function () {
                     var questions = [
-                        { q: "How many sides does a triangle have?", a: 3, hint: "A triangle has 3 sides: side1, side2, side3" },
-                        { q: "How many sides does a square have?", a: 4, hint: "A square has 4 equal sides" },
-                        { q: "How many corners does a triangle have?", a: 3, hint: "A triangle has 3 corners (vertices)" },
-                        { q: "How many corners does a rectangle have?", a: 4, hint: "A rectangle has 4 corners" }
+                        { q: "How many sides does a triangle have?", a: 3, hint: "A triangle has straight sides. Count them: side1, side2, side3..." },
+                        { q: "How many sides does a square have?", a: 4, hint: "A square has equal sides. Count each one!" },
+                        { q: "How many corners does a triangle have?", a: 3, hint: "A triangle has corners (vertices). Count how many!" },
+                        { q: "How many corners does a rectangle have?", a: 4, hint: "A rectangle has corners. Count them!" }
                     ];
                     var item = pick(questions);
                     return {
@@ -325,10 +325,10 @@ var GRADES = [
                 requiredCards: ["addition"],
                 generate: function () {
                     var questions = [
-                        { q: "How many centimeters in 1 meter?", a: 100, hint: "1 meter = 100 centimeters" },
-                        { q: "How many inches in 1 foot?", a: 12, hint: "1 foot = 12 inches" },
-                        { q: "How many fingers on one hand?", a: 5, hint: "Count: thumb, index, middle, ring, pinky = 5" },
-                        { q: "How many pennies make 5 cents?", a: 5, hint: "Each penny = 1 cent, so 5 cents = 5 pennies" }
+                        { q: "How many centimeters in 1 meter?", a: 100, hint: "A meter is a standard unit of length. How many centimeters fit in it?" },
+                        { q: "How many inches in 1 foot?", a: 12, hint: "A foot is a common measurement. How many inches does it contain?" },
+                        { q: "How many fingers on one hand?", a: 5, hint: "Count your fingers: thumb, index, middle, ring, pinky..." },
+                        { q: "How many pennies make 5 cents?", a: 5, hint: "Each penny is worth 1 cent. How many make 5 cents?" }
                     ];
                     var item = pick(questions);
                     return {
@@ -360,10 +360,10 @@ var GRADES = [
                         return {
                             text: a + " + " + b + " = ?", answer: a + b,
                             steps: [
-                                {
-                                    requiredCard: "2nd-add-sub-20",
-                                    explanation: "Using the Mental Math Card:\n\n" + a + " + " + b + "\n\nBreak it apart to make 10:\n" + a + " + ? = 10\nThen add the rest.\n\nWhat is the total?"
-                                }
+                            {
+                                requiredCard: "2nd-add-sub-20",
+                                explanation: "Using the Mental Math Card:\n\n" + a + " + " + b + "\n\nTry breaking it apart to make a round number,\nthen add the rest.\n\nWhat is the total?"
+                            }
                             ]
                         };
                     } else {
@@ -483,10 +483,10 @@ var GRADES = [
                 requiredCards: ["shapes"],
                 generate: function () {
                     var questions = [
-                        { q: "How many sides does a hexagon have?", a: 6, hint: "Hex- means 6" },
-                        { q: "How many sides does an octagon have?", a: 8, hint: "Oct- means 8" },
-                        { q: "How many faces does a cube have?", a: 6, hint: "A cube has 6 square faces" },
-                        { q: "How many edges does a cube have?", a: 12, hint: "A cube has 12 edges (4+4+4)" }
+                        { q: "How many sides does a hexagon have?", a: 6, hint: "Hex- is a prefix related to the number of sides. How many?" },
+                        { q: "How many sides does an octagon have?", a: 8, hint: "Oct- is a prefix related to the number of sides. How many?" },
+                        { q: "How many faces does a cube have?", a: 6, hint: "A cube is a 3D shape with square faces. Count them!" },
+                        { q: "How many edges does a cube have?", a: 12, hint: "A cube has edges connecting its faces. Count the top, middle, and bottom edges!" }
                     ];
                     var item = pick(questions);
                     return {
@@ -595,7 +595,7 @@ var GRADES = [
                             },
                             {
                                 requiredCard: "fractions",
-                                explanation: "Using the Fractions Card:\n\n" + n + "/" + d + " of " + d + "\n= " + n + " \u00D7 1\n= ?\n\nWhen the denominator matches the whole number,\nthe answer is just the numerator!"
+                                explanation: "Using the Fractions Card:\n\n" + n + "/" + d + " of " + d + "\n= " + n + " \u00D7 (" + d + " \u00F7 " + d + ")\n= " + n + " \u00D7 1\n= ?\n\nMultiply to find the result."
                             }
                         ]
                     };
@@ -644,11 +644,11 @@ var GRADES = [
                 requiredCards: ["addition"],
                 generate: function () {
                     var questions = [
-                        { q: "How many minutes in 1 hour?", a: 60, hint: "1 hour = 60 minutes" },
-                        { q: "How many hours in 1 day?", a: 24, hint: "1 day = 24 hours" },
-                        { q: "How many days in 1 week?", a: 7, hint: "1 week = 7 days" },
-                        { q: "How many minutes in half an hour?", a: 30, hint: "Half of 60 = 30 minutes" },
-                        { q: "How many seconds in 1 minute?", a: 60, hint: "1 minute = 60 seconds" }
+                        { q: "How many minutes in 1 hour?", a: 60, hint: "An hour is a unit of time. How many minutes does it contain?" },
+                        { q: "How many hours in 1 day?", a: 24, hint: "A day has a full cycle of time. How many hours are in it?" },
+                        { q: "How many days in 1 week?", a: 7, hint: "A week is a common time period. How many days does it have?" },
+                        { q: "How many minutes in half an hour?", a: 30, hint: "Half of an hour. What is half of a full hour?" },
+                        { q: "How many seconds in 1 minute?", a: 60, hint: "A minute is a unit of time. How many seconds make it up?" }
                     ];
                     var item = pick(questions);
                     return {
@@ -774,10 +774,10 @@ var GRADES = [
                 requiredCards: ["2nd-geometry"],
                 generate: function () {
                     var questions = [
-                        { q: "How many degrees in a right angle?", a: 90, hint: "A right angle is exactly 90\u00B0" },
-                        { q: "How many degrees in a straight line?", a: 180, hint: "A straight angle = 180\u00B0" },
-                        { q: "How many degrees in a full circle?", a: 360, hint: "A full rotation = 360\u00B0" },
-                        { q: "An acute angle is less than ? degrees", a: 90, hint: "Acute angles are between 0\u00B0 and 90\u00B0" }
+                        { q: "How many degrees in a right angle?", a: 90, hint: "A right angle forms a perfect L shape. How many degrees?" },
+                        { q: "How many degrees in a straight line?", a: 180, hint: "A straight angle forms a straight line. How many degrees?" },
+                        { q: "How many degrees in a full circle?", a: 360, hint: "A full rotation around a circle. How many degrees?" },
+                        { q: "An acute angle is less than ? degrees", a: 90, hint: "Acute angles are small angles. They are less than a right angle." }
                     ];
                     var item = pick(questions);
                     return {
@@ -1052,7 +1052,7 @@ var GRADES = [
                         steps: [
                             {
                                 requiredCard: "negatives",
-                                explanation: "Using the Negatives Card:\n\n" + a + " - (" + b + ")\n\nSubtracting a negative = adding a positive:\n" + a + " + " + (-b) + " = ?\n\nWhat do you get?"
+                                explanation: "Using the Negatives Card:\n\n" + a + " - (" + b + ")\n\nTo subtract, change the sign of " + b + " and add:\n" + a + " + " + (-b) + " = ?\n\nWhat do you get?"
                             }
                         ]
                     };
@@ -1125,7 +1125,7 @@ var GRADES = [
                             },
                             {
                                 requiredCard: "division",
-                                explanation: "Using the Division Card:\n\nStep 2: Divide both sides by " + a + ":\n" + a + "x \u00F7 " + a + " = " + (result - b) + " \u00F7 " + a + "\n\nx = ?"
+                                explanation: "Using the Division Card:\n\nStep 2: Divide both sides by " + a + " to get x alone.\n\nWhat is x?"
                             }
                         ]
                     };
@@ -1161,7 +1161,7 @@ var GRADES = [
                             },
                             {
                                 requiredCard: "solve-unknown",
-                                explanation: "Using the Algebra Card:\n\nDivide by " + a + ":\nx = " + (result - b - c) + " \u00F7 " + a + "\n\nWhat is x?"
+                                explanation: "Using the Algebra Card:\n\nDivide both sides by " + a + " to get x alone.\n\nWhat is x?"
                             }
                         ]
                     };
@@ -1420,10 +1420,6 @@ function openCardPicker() {
     if (!hasCard(step.requiredCard)) {
         var cardInfo = getCardInfo(step.requiredCard);
         var feedback = document.getElementById("feedback");
-        feedback.textContent = "\u{1F4A1} You don't have the " + cardInfo.name + " yet. Here's how it works:";
-        feedback.className = "feedback correct";
-
-        // Show explanation but require manual "Next Step" click
         var box = document.getElementById("explanation-box");
         document.getElementById("explanation-card-icon").textContent = cardInfo.icon;
         document.getElementById("explanation-card-name").textContent = cardInfo.name;
@@ -1439,11 +1435,37 @@ function openCardPicker() {
             document.getElementById("step-text").textContent = "Step " + (currentStepIndex + 1) + " of " + currentProblem.steps.length;
         }
 
-        // Do NOT show answer input or "Next Step" — user needs this card first
-        document.getElementById("answer-section").style.display = "none";
-        document.getElementById("next-step-section").style.display = "none";
+        var isOwnCard = (step.requiredCard === currentTopic.cardId);
 
-        feedback.textContent += " Earn this card first, then come back!";
+        if (isOwnCard) {
+            // This step needs the card THIS topic awards — user must complete the topic to earn it.
+            // Show explanation as a hint and let them answer.
+            feedback.textContent = "\u{1F4A1} Complete this topic to earn the " + cardInfo.name + "!";
+            feedback.className = "feedback correct";
+
+            if (currentStepIndex < currentProblem.steps.length - 1) {
+                // More steps — show Next Step
+                document.getElementById("next-step-section").style.display = "block";
+            } else {
+                // Last step — show answer input
+                document.getElementById("answer-section").style.display = "flex";
+                if (currentProblem.type === "fraction") {
+                    document.getElementById("answer-input").placeholder = "a/b";
+                    document.getElementById("answer-input").inputMode = "text";
+                } else {
+                    document.getElementById("answer-input").placeholder = "Type your final answer...";
+                    document.getElementById("answer-input").inputMode = "decimal";
+                }
+                setTimeout(function() { document.getElementById("answer-input").focus(); }, 300);
+            }
+        } else {
+            // Different card needed — block user, they must earn it elsewhere first
+            feedback.textContent = "\u{1F512} You need the " + cardInfo.name + " first. Earn it by completing other topics!";
+            feedback.className = "feedback wrong";
+
+            document.getElementById("answer-section").style.display = "none";
+            document.getElementById("next-step-section").style.display = "none";
+        }
         return;
     }
 
